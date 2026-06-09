@@ -52,6 +52,7 @@ export default function Contact() {
   const handleSubmit = async (e) => {
     e.preventDefault()
     const errs = validate(fields)
+    console.log("test", fields)
     if (Object.keys(errs).length) {
       setErrors(errs)
       return
