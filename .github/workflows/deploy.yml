@@ -1,18 +1,25 @@
-# .github/workflows/deploy.yml (minimal - writes env from repo secrets, builds and deploys to GH Pages)
 name: Deploy to GitHub Pages
 on:
   push:
     branches: [ master ]
+
+# Grant write permission so the workflow's GITHUB_TOKEN can push
+permissions:
+  contents: write
 
 jobs:
   build-and-deploy:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
       - name: Setup Node
         uses: actions/setup-node@v4
         with:
           node-version: '20'
+
       - name: Write env from secrets
         run: |
           cat > .env.production <<'EOF'
@@ -21,10 +28,18 @@ jobs:
           VITE_EMAILJS_TEMPLATE_ID='${{ secrets.VITE_EMAILJS_TEMPLATE_ID }}'
           VITE_EMAILJS_PUBLIC_KEY='${{ secrets.VITE_EMAILJS_PUBLIC_KEY }}'
           EOF
+
       - run: npm ci
       - run: npm run build
+
       - name: Deploy to GitHub Pages
         uses: peaceiris/actions-gh-pages@v3
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
           publish_dir: ./dist
+# Alternative: if branch-protection prevents the GITHUB_TOKEN from pushing,
+# create a PAT with repo scope, add it as repository secret `PERSONAL_TOKEN`,
+# and use the `personal_token` input instead:
+#        with:
+#          personal_token: ${{ secrets.PERSONAL_TOKEN }}
+#          publish_dir: ./dist
