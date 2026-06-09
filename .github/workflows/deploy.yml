@@ -1,9 +1,10 @@
+# yaml
 name: Deploy to GitHub Pages
 on:
   push:
     branches: [ master ]
 
-# Grant write permission so the workflow's GITHUB_TOKEN can push
+# grant write so the workflow's GITHUB_TOKEN can push
 permissions:
   contents: write
 
@@ -37,9 +38,3 @@ jobs:
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
           publish_dir: ./dist
-# Alternative: if branch-protection prevents the GITHUB_TOKEN from pushing,
-# create a PAT with repo scope, add it as repository secret `PERSONAL_TOKEN`,
-# and use the `personal_token` input instead:
-#        with:
-#          personal_token: ${{ secrets.PERSONAL_TOKEN }}
-#          publish_dir: ./dist
