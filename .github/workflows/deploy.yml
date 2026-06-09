@@ -1,18 +1,26 @@
-# .github/workflows/deploy.yml (minimal - writes env from repo secrets, builds and deploys to GH Pages)
+# File: ` .github/workflows/deploy.yml `
+# Grants write permission and uses full checkout so the action can push to gh-pages.
 name: Deploy to GitHub Pages
 on:
   push:
     branches: [ master ]
+
+permissions:
+  contents: write
 
 jobs:
   build-and-deploy:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
       - name: Setup Node
         uses: actions/setup-node@v4
         with:
           node-version: '20'
+
       - name: Write env from secrets
         run: |
           cat > .env.production <<'EOF'
@@ -21,8 +29,10 @@ jobs:
           VITE_EMAILJS_TEMPLATE_ID='${{ secrets.VITE_EMAILJS_TEMPLATE_ID }}'
           VITE_EMAILJS_PUBLIC_KEY='${{ secrets.VITE_EMAILJS_PUBLIC_KEY }}'
           EOF
+
       - run: npm ci
       - run: npm run build
+
       - name: Deploy to GitHub Pages
         uses: peaceiris/actions-gh-pages@v3
         with:
