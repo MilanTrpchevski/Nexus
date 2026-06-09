@@ -53,6 +53,7 @@ export default function Contact() {
     e.preventDefault()
     const errs = validate(fields)
     console.log("test", fields)
+    console.log("public Key", PUBLIC_KEY)
     if (Object.keys(errs).length) {
       setErrors(errs)
       return
@@ -61,6 +62,7 @@ export default function Contact() {
     setStatus('sending')
 
     try {
+
       await emailjs.sendForm(SERVICE_ID, TEMPLATE_ID, formRef.current, {
         publicKey: PUBLIC_KEY,
       })
