@@ -1,0 +1,90 @@
+.section {
+  display: grid;
+  grid-template-columns: 1fr 2fr;
+  border-bottom: 1px solid var(--line);
+}
+
+.left {
+  padding: 5rem 3rem;
+  border-right: 1px solid var(--line);
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.eyebrow {
+  font-size: 0.7rem;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  opacity: 0.45;
+  margin-bottom: 1rem;
+}
+
+.title {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: clamp(2.5rem, 4vw, 4rem);
+  line-height: 0.92;
+  letter-spacing: 0.02em;
+}
+
+.title em {
+  font-style: normal;
+  color: var(--accent);
+}
+
+.desc {
+  font-size: 0.88rem;
+  line-height: 1.7;
+  font-weight: 300;
+  opacity: 0.6;
+  max-width: 22rem;
+}
+
+.right {
+  padding: 5rem 3rem;
+}
+
+.step {
+  display: grid;
+  grid-template-columns: 3rem 1fr;
+  gap: 2rem;
+  padding: 2.5rem 0;
+  border-bottom: 1px solid var(--line);
+  align-items: start;
+}
+
+.step:last-child {
+  border-bottom: none;
+}
+
+.stepN {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: 2.5rem;
+  color: var(--accent);
+  line-height: 1;
+}
+
+.stepTitle {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: 1.6rem;
+  letter-spacing: 0.03em;
+  margin-bottom: 0.6rem;
+}
+
+.stepText {
+  font-size: 0.88rem;
+  line-height: 1.7;
+  font-weight: 300;
+  opacity: 0.6;
+}
+
+@media (max-width: 900px) {
+  .section { grid-template-columns: 1fr; }
+  .left {
+    border-right: none;
+    border-bottom: 1px solid var(--line);
+    padding: 3rem 1.5rem;
+    gap: 2rem;
+  }
+  .right { padding: 3rem 1.5rem; }
+}
