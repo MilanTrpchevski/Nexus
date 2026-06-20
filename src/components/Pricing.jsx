@@ -11,10 +11,14 @@ function PricingCard({ tier, price, cycle, featured, features, badge, cta }) {
     >
       {featured && <div className={styles.badge}>{badge}</div>}
       <div className={styles.tierLabel}>{tier}</div>
-      <div className={styles.price}>
-        <sup>€</sup>{price}
-      </div>
-      <div className={styles.cycle}>{cycle}</div>
+      {price ? (
+        <div className={styles.price}>
+          <sup>€</sup>{price}
+        </div>
+      ) : (
+        <div className={styles.priceCustom}>{cycle}</div>
+      )}
+      {price && <div className={styles.cycle}>{cycle}</div>}
       <ul className={styles.features}>
         {features.map((f, i) => (
           <li key={i}>{f}</li>

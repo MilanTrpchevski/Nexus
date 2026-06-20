@@ -85,14 +85,14 @@
     "eyebrow": "Transparent Costs",
     "titleLine1": "Our",
     "titleEm": "Pricing",
-    "desc": "Straightforward packages designed for Macedonian businesses at every stage. All prices in EUR. Custom quotes available for larger projects.",
+    "desc": "Straightforward packages designed for Macedonian businesses at every stage. Get in touch for a quote tailored to your business.",
     "badge": "Popular",
-    "cta": "Get Started",
+    "cta": "Request a Quote",
     "plans": [
       {
         "tier": "Starter",
-        "price": "299",
-        "cycle": "one-time payment",
+        "price": "",
+        "cycle": "Contact for pricing",
         "features": [
           "5-page website",
           "Mobile responsive design",
@@ -103,8 +103,8 @@
       },
       {
         "tier": "Growth",
-        "price": "699",
-        "cycle": "one-time + €99/mo",
+        "price": "",
+        "cycle": "Contact for pricing",
         "features": [
           "10-page website",
           "Custom design + branding",
@@ -116,8 +116,8 @@
       },
       {
         "tier": "Scale",
-        "price": "1499",
-        "cycle": "one-time + €199/mo",
+        "price": "",
+        "cycle": "Contact for pricing",
         "features": [
           "Full custom website / e-shop",
           "Brand identity package",
