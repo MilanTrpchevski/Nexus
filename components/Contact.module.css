@@ -1,0 +1,232 @@
+.section {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+}
+
+.left {
+  padding: 6rem 3rem;
+  border-right: 1px solid var(--line);
+  background: var(--ink);
+  color: var(--paper);
+}
+
+.eyebrow {
+  font-size: 0.7rem;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  opacity: 0.4;
+  margin-bottom: 1rem;
+}
+
+.title {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: clamp(3rem, 5vw, 5rem);
+  line-height: 0.92;
+  letter-spacing: 0.02em;
+}
+
+.title em {
+  font-style: normal;
+  color: var(--accent);
+}
+
+.info {
+  margin-top: 4rem;
+}
+
+.row {
+  display: flex;
+  flex-direction: column;
+  gap: 0.3rem;
+  padding: 1.5rem 0;
+  border-bottom: 1px solid rgba(245, 240, 232, 0.1);
+}
+
+.rowLabel {
+  font-size: 0.65rem;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  opacity: 0.4;
+}
+
+.rowVal {
+  font-size: 1rem;
+  font-weight: 300;
+  opacity: 0.85;
+}
+
+.right {
+  padding: 6rem 3rem;
+}
+
+.formEyebrow {
+  font-size: 0.68rem;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  opacity: 0.5;
+  margin-bottom: 0.7rem;
+}
+
+.formTitle {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: 2.5rem;
+  letter-spacing: 0.03em;
+  margin-bottom: 3rem;
+}
+
+.formRow {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 2rem;
+}
+
+.formGroup {
+  margin-bottom: 2rem;
+}
+
+.formGroup label {
+  display: block;
+  font-size: 0.68rem;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  opacity: 0.5;
+  margin-bottom: 0.7rem;
+}
+
+.formGroup input,
+.formGroup textarea,
+.formGroup select {
+  width: 100%;
+  background: transparent;
+  border: none;
+  border-bottom: 1.5px solid var(--line);
+  padding: 0.8rem 0;
+  font-family: 'DM Sans', sans-serif;
+  font-size: 0.95rem;
+  font-weight: 300;
+  color: var(--ink);
+  outline: none;
+  transition: border-color 0.2s;
+  appearance: none;
+  -webkit-appearance: none;
+}
+
+.formGroup input:focus,
+.formGroup textarea:focus,
+.formGroup select:focus {
+  border-color: var(--accent);
+}
+
+.formGroup textarea {
+  resize: none;
+  min-height: 6rem;
+}
+
+.submit {
+  background: var(--accent);
+  color: #fff;
+  border: none;
+  padding: 1.1rem 3rem;
+  font-family: 'DM Sans', sans-serif;
+  font-size: 0.8rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  cursor: pointer;
+  transition: background 0.2s;
+  width: 100%;
+  margin-top: 1rem;
+}
+
+.submit:hover {
+  background: var(--ink);
+}
+
+.sent {
+  background: var(--ink) !important;
+}
+
+@media (max-width: 900px) {
+  .section { grid-template-columns: 1fr; }
+  .left { padding: 4rem 1.5rem; border-right: none; border-bottom: 1px solid var(--line); }
+  .right { padding: 4rem 1.5rem; }
+  .formRow { grid-template-columns: 1fr; gap: 0; }
+}
+
+/* ── Validation ── */
+.inputError {
+  border-color: var(--accent) !important;
+}
+
+.fieldError {
+  display: block;
+  font-size: 0.72rem;
+  color: var(--accent);
+  margin-top: 0.4rem;
+  letter-spacing: 0.04em;
+}
+
+/* ── Success / Error banners ── */
+.successBox,
+.errorBox {
+  display: flex;
+  align-items: flex-start;
+  gap: 1.2rem;
+  padding: 1.5rem 2rem;
+  margin-bottom: 2rem;
+  font-size: 0.88rem;
+  line-height: 1.6;
+}
+
+.successBox {
+  background: rgba(10, 10, 10, 0.04);
+  border-left: 3px solid var(--ink);
+}
+
+.errorBox {
+  background: rgba(232, 75, 42, 0.06);
+  border-left: 3px solid var(--accent);
+}
+
+.successIcon {
+  font-size: 1.4rem;
+  line-height: 1;
+  margin-top: 0.1rem;
+}
+
+.successBox strong,
+.errorBox strong {
+  display: block;
+  font-weight: 500;
+  margin-bottom: 0.2rem;
+}
+
+.successBox p,
+.errorBox p {
+  opacity: 0.65;
+  font-weight: 300;
+}
+
+.resetBtn {
+  margin-left: auto;
+  align-self: center;
+  background: none;
+  border: 1.5px solid var(--line);
+  padding: 0.5rem 1rem;
+  font-family: 'DM Sans', sans-serif;
+  font-size: 0.72rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  cursor: pointer;
+  white-space: nowrap;
+  transition: all 0.2s;
+}
+
+.resetBtn:hover {
+  border-color: var(--ink);
+}
+
+/* ── Submit button states ── */
+.sending {
+  opacity: 0.6;
+  cursor: not-allowed;
+}

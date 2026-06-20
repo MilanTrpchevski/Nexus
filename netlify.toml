@@ -2,8 +2,9 @@
   command = "npm run build"
   publish = "dist"
 
-# Ensures client-side routing (if you add React Router later)
-# doesn't 404 on page refresh.
+# Required for React Router — ensures direct visits or refreshes on
+# routes like /mk or /en are served index.html instead of a 404,
+# letting client-side routing take over.
 [[redirects]]
   from = "/*"
   to = "/index.html"

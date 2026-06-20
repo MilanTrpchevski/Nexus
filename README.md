@@ -63,29 +63,45 @@ Real users never see it.
 
 ---
 
-## 🌍 Language Switching (English / Macedonian)
+## 🌍 Language Switching (English / Macedonian) — URL-based
 
-The site uses **react-i18next**. All copy lives in two JSON files:
+The site uses **react-i18next** + **react-router-dom**. Language is part
+of the URL, not just client state:
+
+```
+nexiuse.com/en   ← English version
+nexiuse.com/mk   ← Macedonian version
+nexiuse.com/     ← redirects to /en or /mk automatically
+```
+
+This means you can hand out **`nexiuse.com/mk`** directly on a cold call
+or in a Macedonian-language ad, and the visitor lands straight on the
+Macedonian version — no guessing, no toggle needed, no confusion.
+
+### File structure
 
 ```
 src/i18n/
-├── index.js              ← i18next config (auto-detects browser language, persists choice)
+├── index.js              ← i18next config (resources only — language is set by the URL)
+├── LanguageLayout.jsx     ← reads the :lang URL param, syncs it to i18next, redirects invalid langs
+├── RootRedirect.jsx       ← handles "/" → sends visitor to /en or /mk
 └── locales/
     ├── en.json            ← English translations
-    └── mk.json            ← Macedonian translations
+    └── mk.json             ← Macedonian translations
 ```
 
 ### How it works
-- A language toggle button (**EN / МК**) sits in the navbar
-- First visit: detects the browser's language — Macedonian browsers get `mk`, everyone else gets `en`
-- After that, the choice is saved in `localStorage` so it persists across visits
-- Switching language re-renders instantly — no page reload, no extra network request
+- Visiting `/` checks `localStorage` first, then browser language, then defaults to `/en`
+- Visiting `/mk` or `/en` directly always shows that language, regardless of saved preference
+- The navbar's **EN / МК** toggle swaps the URL prefix while preserving any in-page anchor (e.g. switching while on `#contact` keeps you scrolled to the contact section)
+- Whichever language you land on via direct link gets remembered in `localStorage` for next time you visit `/`
+- Invalid paths (e.g. `/fr`, `/anything-else`) redirect back to a valid language automatically
 
 ### Editing translations
-Just open `en.json` or `mk.json` and edit the text. The JSON structure mirrors
-the page sections (`hero`, `services`, `pricing`, `contact`, etc.) so finding
-the right string is straightforward. Both files must keep the **same keys** —
-only the values should differ between languages.
+Open `en.json` or `mk.json` and edit the text directly — no JSX touching
+needed. The JSON structure mirrors the page sections (`hero`, `services`,
+`pricing`, `contact`, etc.). Both files must keep the **same keys**, only
+the values differ.
 
 Example — changing the hero subtitle:
 ```json
@@ -101,11 +117,13 @@ Example — changing the hero subtitle:
 ```
 
 ### Adding a third language
-1. Create `src/i18n/locales/de.json` (or whichever language), copying `en.json`'s structure
+1. Create `src/i18n/locales/de.json` (or whichever), copying `en.json`'s structure
 2. Import it in `src/i18n/index.js` and add it to the `resources` object
-3. Add a button/option in `Navbar.jsx`'s language switcher
+3. Add `'de'` to `SUPPORTED_LANGS` in the same file
+4. Add a button/option in `Navbar.jsx`'s language switcher
 
 ---
+
 
 
 
@@ -123,12 +141,20 @@ src/
 │   └── Footer.jsx + Footer.module.css
 ├── hooks/
 │   └── useReveal.js
+├── i18n/
+│   ├── index.js
+│   ├── LanguageLayout.jsx
+│   ├── RootRedirect.jsx
+│   └── locales/
+│       ├── en.json
+│       └── mk.json
 ├── styles/
 │   └── global.css
-├── App.jsx
+├── App.jsx              ← router shell (defines /en, /mk, / routes)
+├── HomePage.jsx          ← actual page content (Hero, Services, etc.)
 └── main.jsx
 index.html                                  ← hidden static form for Netlify
-netlify.toml                                 ← build + redirect config
+netlify.toml                                 ← build + SPA redirect config
 ```
 
 ---
@@ -166,6 +192,7 @@ netlify.toml                                 ← build + redirect config
 | Package           | Purpose                          |
 |--------------------|-----------------------------------|
 | react + react-dom  | UI framework                      |
+| react-router-dom   | URL-based routing (/en, /mk)       |
 | vite               | Build tool + dev server           |
 | i18next            | Translation engine                |
 | react-i18next      | React bindings for i18next        |
