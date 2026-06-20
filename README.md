@@ -1,6 +1,7 @@
-# NEXUS — Digital Agency Website
+# NEXIUSE — Digital Agency Website
 
-React + Vite marketing agency site with a fully working EmailJS contact form.
+React + Vite marketing agency site with a working contact form via
+**Netlify Forms** (no third-party API keys needed).
 
 ---
 
@@ -8,59 +9,57 @@ React + Vite marketing agency site with a fully working EmailJS contact form.
 
 ```bash
 npm install
-cp .env.example .env        # then fill in your EmailJS keys (see below)
+cp .env.example .env        # fill in your contact info (see below)
 npm run dev                  # → http://localhost:5173
 ```
 
+> ⚠️ Netlify Forms only works once deployed on Netlify — it won't
+> actually send anything while running `npm run dev` locally. That's
+> expected; just test the UI locally and verify real submissions
+> after deploying.
+
 ---
 
-## 📧 EmailJS Setup (takes ~5 minutes)
+## 📬 How the contact form works
 
-### Step 1 — Create a free account
-Go to **https://www.emailjs.com** and sign up.  
-Free tier = 200 emails/month, no credit card needed.
+Netlify scans your repo at **build time** for any `<form>` with a
+`data-netlify="true"` attribute and registers it. Since our real form
+is rendered client-side by React (which Netlify's build bot can't
+see), we ship a tiny **hidden static form** in `index.html` purely so
+Netlify knows the form exists and what fields to expect:
 
-### Step 2 — Add an Email Service
-1. Dashboard → **Email Services** → **Add New Service**
-2. Choose **Gmail** (or Outlook, etc.)
-3. Click **Connect Account** and log in with the Gmail you want to receive messages on
-4. Hit **Create Service**
-5. Copy the **Service ID** (looks like `service_xxxxxxx`)
-
-### Step 3 — Create an Email Template
-1. Dashboard → **Email Templates** → **Create New Template**
-2. Paste this as the template body:
-
-```
-New enquiry from {{user_name}}
-
-From:    {{user_name}}
-Email:   {{user_email}}
-Company: {{company}}
-Service: {{service}}
-
-Message:
-{{message}}
+```html
+<!-- index.html -->
+<form name="contact" data-netlify="true" netlify-honeypot="bot-field" hidden>
+  <input type="text" name="user_name" />
+  <input type="email" name="user_email" />
+  <input type="text" name="company" />
+  <input type="text" name="service" />
+  <textarea name="message"></textarea>
+  <input type="text" name="bot-field" />
+</form>
 ```
 
-3. Set **To Email** to your inbox address
-4. Set **Subject** to: `New enquiry from {{user_name}} — NEXUS`
-5. Hit **Save**
-6. Copy the **Template ID** (looks like `template_xxxxxxx`)
+The real, interactive form in `Contact.jsx` submits via `fetch()` to
+the same Netlify endpoint with `form-name: contact` in the payload.
+No SDK, no API keys, no third-party account.
 
-### Step 4 — Get your Public Key
-Dashboard → **Account** → **API Keys** → copy **Public Key**
+### Viewing submissions
+Netlify Dashboard → your site → **Forms** tab. Every submission shows
+up there automatically.
 
-### Step 5 — Fill in your .env file
+### Getting emailed when a form is submitted
+1. Netlify Dashboard → your site → **Site configuration → Forms**
+2. Under **Form notifications** → **Add notification** → **Email notification**
+3. Enter your inbox address → Save
 
-```bash
-# .env  (in the project root — never commit this file)
-VITE_EMAILJS_PUBLIC_KEY=your_public_key_here
-VITE_EMAILJS_SERVICE_ID=service_xxxxxxx
-VITE_EMAILJS_TEMPLATE_ID=template_xxxxxxx
-```
+Free tier = 100 submissions/month, which is far more than enough at
+this stage.
 
-Restart the dev server after saving `.env` and the form is live. ✅
+### Spam protection
+The hidden `bot-field` input is a honeypot — bots that fill in every
+field (including hidden ones) get silently rejected by Netlify.
+Real users never see it.
 
 ---
 
@@ -76,7 +75,7 @@ src/
 │   ├── Services.jsx + Services.module.css
 │   ├── Process.jsx + Process.module.css
 │   ├── Pricing.jsx + Pricing.module.css
-│   ├── Contact.jsx + Contact.module.css   ← EmailJS form lives here
+│   ├── Contact.jsx + Contact.module.css   ← Netlify Forms lives here
 │   └── Footer.jsx + Footer.module.css
 ├── hooks/
 │   └── useReveal.js
@@ -84,6 +83,8 @@ src/
 │   └── global.css
 ├── App.jsx
 └── main.jsx
+index.html                                  ← hidden static form for Netlify
+netlify.toml                                 ← build + redirect config
 ```
 
 ---
@@ -91,38 +92,36 @@ src/
 ## 🎨 Customization
 
 | What                | Where                              |
-|---------------------|------------------------------------|
+|---------------------|-------------------------------------|
 | Colors              | `src/styles/global.css` — CSS vars |
 | Services list       | `Services.jsx` — `SERVICES` array  |
 | Pricing plans       | `Pricing.jsx` — `PLANS` array      |
 | Process steps       | `Process.jsx` — `STEPS` array      |
-| Contact info        | `Contact.jsx` — `INFO` array       |
+| Contact info        | `.env` — `VITE_CONTACT_INFO`       |
 | Agency name / logo  | `Navbar.jsx`, `Footer.jsx`, `index.html` |
 
 ---
 
-## 🚀 Deployment
+## 🚀 Deployment (Netlify)
 
-### Netlify (recommended — free)
 1. Push to GitHub
-2. Go to netlify.com → **Add new site** → **Import from Git**
+2. netlify.com → **Add new site** → **Import from Git** → pick your repo
 3. Build command: `npm run build` | Publish directory: `dist`
-4. Add your `.env` keys under **Site Settings → Environment Variables**
+4. Add `VITE_CONTACT_INFO` under **Site configuration → Environment variables**
+5. Deploy
+6. Once live, set up form notifications (see above) and add your custom domain under **Domain management**
 
-### Vercel
-```bash
-npm i -g vercel && vercel
-# Add env vars in the Vercel dashboard under Settings → Environment Variables
-```
-
-> ⚠️ Never commit your `.env` file — it's already in `.gitignore`.
+> If you were previously deploying via GitHub Actions to GitHub Pages,
+> you can delete that workflow — Netlify auto-deploys on every push
+> to your default branch with zero YAML config needed.
 
 ---
 
 ## 📦 Dependencies
 
-| Package              | Purpose                     |
-|----------------------|-----------------------------|
-| react + react-dom    | UI framework                |
-| @emailjs/browser     | Send emails from the frontend |
-| vite                 | Build tool + dev server     |
+| Package           | Purpose                  |
+|--------------------|---------------------------|
+| react + react-dom  | UI framework               |
+| vite               | Build tool + dev server    |
+
+That's it — no form SDK required anymore.

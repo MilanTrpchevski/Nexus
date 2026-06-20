@@ -9,6 +9,24 @@
   </head>
   <body>
     <div id="root"></div>
+
+    <!--
+      Netlify Forms detection form.
+      This static, hidden form is scanned at BUILD TIME by Netlify's bots
+      so it knows about the "contact" form and its fields.
+      The real, interactive form rendered by React submits to this same
+      form name via fetch() — see Contact.jsx.
+      Do not remove this even though it's never shown to users.
+    -->
+    <form name="contact" data-netlify="true" netlify-honeypot="bot-field" hidden>
+      <input type="text" name="user_name" />
+      <input type="email" name="user_email" />
+      <input type="text" name="company" />
+      <input type="text" name="service" />
+      <textarea name="message"></textarea>
+      <input type="text" name="bot-field" />
+    </form>
+
     <script type="module" src="/src/main.jsx"></script>
   </body>
 </html>
