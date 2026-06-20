@@ -1,0 +1,175 @@
+{
+  "nav": {
+    "services": "Services",
+    "process": "Process",
+    "pricing": "Pricing",
+    "contact": "Contact",
+    "cta": "Start Project"
+  },
+  "hero": {
+    "eyebrow": "Digital Agency — Skopje, MK",
+    "headingLine1": "We Build",
+    "headingEm": "Brands",
+    "headingLine3": "Online.",
+    "sub": "From websites that convert to campaigns that scale — we help Macedonian businesses claim their space on the internet.",
+    "ctaPrimary": "Get a Free Quote",
+    "ctaGhost": "Our Services",
+    "scroll": "Scroll",
+    "stats": {
+      "response": "Avg. Response Time",
+      "expertise": "Local Expertise",
+      "leads": "More Leads via Web",
+      "based": "Based in Macedonia"
+    }
+  },
+  "ticker": {
+    "items": [
+      "Web Design",
+      "SEO Optimization",
+      "Social Media Marketing",
+      "Google Ads",
+      "Brand Identity",
+      "E-Commerce",
+      "Content Strategy"
+    ]
+  },
+  "services": {
+    "eyebrow": "What We Do",
+    "titleLine1": "Our",
+    "titleEm": "Services",
+    "desc": "Every business deserves a strong digital presence. We deliver end-to-end solutions — from your first website to full-scale digital marketing campaigns.",
+    "items": [
+      {
+        "name": "Web Design & Dev",
+        "desc": "Fast, mobile-first websites that look great and convert visitors into customers. We build on modern stacks with SEO baked in."
+      },
+      {
+        "name": "SEO & Content",
+        "desc": "Rank higher on Google for searches your customers are making. Local SEO strategies tailored for the Macedonian market."
+      },
+      {
+        "name": "Social Media",
+        "desc": "Strategic content and management for Instagram, Facebook, and TikTok. We build audiences that become loyal customers."
+      },
+      {
+        "name": "Paid Advertising",
+        "desc": "Google Ads and Meta Ads campaigns that deliver measurable ROI. We manage budget, targeting, and creative — you get results."
+      }
+    ]
+  },
+  "process": {
+    "eyebrow": "How It Works",
+    "titleLine1": "Our",
+    "titleEm": "Process",
+    "desc": "Simple, transparent, and collaborative. We keep you in the loop at every step.",
+    "steps": [
+      {
+        "title": "Discovery Call",
+        "text": "We learn about your business, goals, and target customers. Free consultation — no pressure, no jargon."
+      },
+      {
+        "title": "Strategy & Proposal",
+        "text": "We send you a clear plan with timeline, deliverables, and pricing. No hidden costs, ever."
+      },
+      {
+        "title": "Design & Build",
+        "text": "Our team gets to work. You receive regular updates and have input throughout the process."
+      },
+      {
+        "title": "Launch & Grow",
+        "text": "We go live and monitor performance. Then we help you scale with ongoing marketing support."
+      }
+    ]
+  },
+  "pricing": {
+    "eyebrow": "Transparent Costs",
+    "titleLine1": "Our",
+    "titleEm": "Pricing",
+    "desc": "Straightforward packages designed for Macedonian businesses at every stage. All prices in EUR. Custom quotes available for larger projects.",
+    "badge": "Popular",
+    "cta": "Get Started",
+    "plans": [
+      {
+        "tier": "Starter",
+        "price": "299",
+        "cycle": "one-time payment",
+        "features": [
+          "5-page website",
+          "Mobile responsive design",
+          "Contact form integration",
+          "Basic on-page SEO",
+          "30 days support"
+        ]
+      },
+      {
+        "tier": "Growth",
+        "price": "699",
+        "cycle": "one-time + €99/mo",
+        "features": [
+          "10-page website",
+          "Custom design + branding",
+          "Full SEO setup",
+          "Social media setup",
+          "Google Business setup",
+          "Monthly reporting"
+        ]
+      },
+      {
+        "tier": "Scale",
+        "price": "1499",
+        "cycle": "one-time + €199/mo",
+        "features": [
+          "Full custom website / e-shop",
+          "Brand identity package",
+          "Google + Meta Ads management",
+          "Monthly content creation",
+          "Weekly reports + strategy calls",
+          "Priority support"
+        ]
+      }
+    ]
+  },
+  "contact": {
+    "eyebrow": "Get in Touch",
+    "titleLine1": "Let's",
+    "titleEm": "Talk.",
+    "formEyebrow": "Free Consultation",
+    "formTitle": "Start Your Project",
+    "successTitle": "Message sent!",
+    "successText": "We'll get back to you within 24 hours.",
+    "errorTitle": "Something went wrong.",
+    "errorText": "Please try again or email us directly.",
+    "resetBtn": "Send another",
+    "tryAgainBtn": "Try again",
+    "labels": {
+      "name": "Your Name *",
+      "email": "Email Address *",
+      "company": "Business Name",
+      "service": "Service Needed",
+      "message": "Tell Us About Your Business *"
+    },
+    "placeholders": {
+      "name": "Aleksandar Petrovski",
+      "email": "alex@business.mk",
+      "company": "Your Company",
+      "message": "What do you sell, who are your customers, what's your goal..."
+    },
+    "serviceOptions": {
+      "select": "Select a service",
+      "web": "Website Design",
+      "seo": "SEO & Content",
+      "social": "Social Media",
+      "ads": "Paid Advertising",
+      "full": "Full Package"
+    },
+    "submit": "Send Message →",
+    "sending": "Sending…"
+  },
+  "formErrors": {
+    "required": "This field is required",
+    "invalidEmail": "Enter a valid email"
+  },
+  "footer": {
+    "copy": "© {{year}} Nexiuse Digital. All rights reserved."
+  }
+}

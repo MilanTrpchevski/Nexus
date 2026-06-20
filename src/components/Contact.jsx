@@ -1,4 +1,5 @@
 import { useState } from 'react'
+import { useTranslation } from 'react-i18next'
 import styles from './Contact.module.css'
 
 const INFO = (() => {
@@ -19,18 +20,6 @@ const INITIAL = {
   message:    '',
 }
 
-function validate(fields) {
-  const errors = {}
-  if (!fields.user_name.trim())  errors.user_name  = 'Name is required'
-  if (!fields.user_email.trim()) errors.user_email = 'Email is required'
-  else if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(fields.user_email))
-    errors.user_email = 'Enter a valid email'
-  if (!fields.message.trim())    errors.message    = 'Message is required'
-  return errors
-}
-
-// Encodes an object as a URL-encoded form body — required format
-// for Netlify's form-handling endpoint.
 function encodeForm(data) {
   return Object.keys(data)
     .map((key) => encodeURIComponent(key) + '=' + encodeURIComponent(data[key]))
@@ -38,9 +27,19 @@ function encodeForm(data) {
 }
 
 export default function Contact() {
+  const { t } = useTranslation()
   const [fields, setFields] = useState(INITIAL)
   const [errors, setErrors] = useState({})
   const [status, setStatus] = useState('idle') // idle | sending | success | error
+
+  const validate = (f) => {
+    const errs = {}
+    if (!f.user_name.trim())  errs.user_name  = 'required'
+    if (!f.user_email.trim()) errs.user_email = 'required'
+    else if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(f.user_email)) errs.user_email = 'invalid'
+    if (!f.message.trim())    errs.message    = 'required'
+    return errs
+  }
 
   const handleChange = (e) => {
     const { name, value } = e.target
@@ -82,9 +81,9 @@ export default function Contact() {
     <section id="contact" className={styles.section}>
       {/* ── LEFT PANEL ── */}
       <div className={styles.left}>
-        <p className={styles.eyebrow}>Get in Touch</p>
+        <p className={styles.eyebrow}>{t('contact.eyebrow')}</p>
         <h2 className={styles.title}>
-          Let's<br /><em>Talk.</em>
+          {t('contact.titleLine1')}<br /><em>{t('contact.titleEm')}</em>
         </h2>
         <div className={styles.info}>
           {INFO.map((row) => (
@@ -98,19 +97,19 @@ export default function Contact() {
 
       {/* ── RIGHT PANEL ── */}
       <div className={styles.right}>
-        <p className={styles.formEyebrow}>Free Consultation</p>
-        <h3 className={styles.formTitle}>Start Your Project</h3>
+        <p className={styles.formEyebrow}>{t('contact.formEyebrow')}</p>
+        <h3 className={styles.formTitle}>{t('contact.formTitle')}</h3>
 
         {/* SUCCESS STATE */}
         {status === 'success' && (
           <div className={styles.successBox}>
             <span className={styles.successIcon}>✓</span>
             <div>
-              <strong>Message sent!</strong>
-              <p>We'll get back to you within 24 hours.</p>
+              <strong>{t('contact.successTitle')}</strong>
+              <p>{t('contact.successText')}</p>
             </div>
             <button className={styles.resetBtn} onClick={resetStatus}>
-              Send another
+              {t('contact.resetBtn')}
             </button>
           </div>
         )}
@@ -120,23 +119,18 @@ export default function Contact() {
           <div className={styles.errorBox}>
             <span>⚠</span>
             <div>
-              <strong>Something went wrong.</strong>
-              <p>Please try again or email us directly.</p>
+              <strong>{t('contact.errorTitle')}</strong>
+              <p>{t('contact.errorText')}</p>
             </div>
             <button className={styles.resetBtn} onClick={resetStatus}>
-              Try again
+              {t('contact.tryAgainBtn')}
             </button>
           </div>
         )}
 
         {/* FORM — hidden on success */}
         {status !== 'success' && (
-          <form
-            name="contact"
-            onSubmit={handleSubmit}
-            noValidate
-            // honeypot field name must match the static form in index.html
-          >
+          <form name="contact" onSubmit={handleSubmit} noValidate>
             <input type="hidden" name="form-name" value="contact" />
             <p hidden>
               <label>
@@ -146,74 +140,84 @@ export default function Contact() {
 
             <div className={styles.formRow}>
               <div className={styles.formGroup}>
-                <label htmlFor="user_name">Your Name *</label>
+                <label htmlFor="user_name">{t('contact.labels.name')}</label>
                 <input
                   id="user_name"
                   name="user_name"
                   type="text"
-                  placeholder="Aleksandar Petrovski"
+                  placeholder={t('contact.placeholders.name')}
                   value={fields.user_name}
                   onChange={handleChange}
                   className={errors.user_name ? styles.inputError : ''}
                 />
-                {errors.user_name && <span className={styles.fieldError}>{errors.user_name}</span>}
+                {errors.user_name && (
+                  <span className={styles.fieldError}>{t('formErrors.required')}</span>
+                )}
               </div>
               <div className={styles.formGroup}>
-                <label htmlFor="user_email">Email Address *</label>
+                <label htmlFor="user_email">{t('contact.labels.email')}</label>
                 <input
                   id="user_email"
                   name="user_email"
                   type="email"
-                  placeholder="alex@business.mk"
+                  placeholder={t('contact.placeholders.email')}
                   value={fields.user_email}
                   onChange={handleChange}
                   className={errors.user_email ? styles.inputError : ''}
                 />
-                {errors.user_email && <span className={styles.fieldError}>{errors.user_email}</span>}
+                {errors.user_email && (
+                  <span className={styles.fieldError}>
+                    {errors.user_email === 'invalid'
+                      ? t('formErrors.invalidEmail')
+                      : t('formErrors.required')}
+                  </span>
+                )}
               </div>
             </div>
 
             <div className={styles.formRow}>
               <div className={styles.formGroup}>
-                <label htmlFor="company">Business Name</label>
+                <label htmlFor="company">{t('contact.labels.company')}</label>
                 <input
                   id="company"
                   name="company"
                   type="text"
-                  placeholder="Your Company"
+                  placeholder={t('contact.placeholders.company')}
                   value={fields.company}
                   onChange={handleChange}
                 />
               </div>
               <div className={styles.formGroup}>
-                <label htmlFor="service">Service Needed</label>
+                <label htmlFor="service">{t('contact.labels.service')}</label>
                 <select
                   id="service"
                   name="service"
                   value={fields.service}
                   onChange={handleChange}
                 >
-                  <option value="">Select a service</option>
-                  <option value="Website Design">Website Design</option>
-                  <option value="SEO & Content">SEO &amp; Content</option>
-                  <option value="Social Media">Social Media</option>
-                  <option value="Paid Advertising">Paid Advertising</option>
-                  <option value="Full Package">Full Package</option>
+                  <option value="">{t('contact.serviceOptions.select')}</option>
+                  <option value="Website Design">{t('contact.serviceOptions.web')}</option>
+                  <option value="SEO & Content">{t('contact.serviceOptions.seo')}</option>
+                  <option value="Social Media">{t('contact.serviceOptions.social')}</option>
+                  <option value="Paid Advertising">{t('contact.serviceOptions.ads')}</option>
+                  <option value="Full Package">{t('contact.serviceOptions.full')}</option>
                 </select>
               </div>
             </div>
 
             <div className={styles.formGroup}>
-              <label htmlFor="message">Tell Us About Your Business *</label>
+              <label htmlFor="message">{t('contact.labels.message')}</label>
               <textarea
                 id="message"
                 name="message"
-                placeholder="What do you sell, who are your customers, what's your goal..."
+                placeholder={t('contact.placeholders.message')}
                 value={fields.message}
                 onChange={handleChange}
                 className={errors.message ? styles.inputError : ''}
               />
-              {errors.message && <span className={styles.fieldError}>{errors.message}</span>}
+              {errors.message && (
+                <span className={styles.fieldError}>{t('formErrors.required')}</span>
+              )}
             </div>
 
             <button
@@ -221,7 +225,7 @@ export default function Contact() {
               className={`${styles.submit} ${status === 'sending' ? styles.sending : ''}`}
               disabled={status === 'sending'}
             >
-              {status === 'sending' ? 'Sending…' : 'Send Message →'}
+              {status === 'sending' ? t('contact.sending') : t('contact.submit')}
             </button>
           </form>
         )}

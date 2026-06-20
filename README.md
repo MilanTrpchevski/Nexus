@@ -63,7 +63,51 @@ Real users never see it.
 
 ---
 
-## 🗂 Project Structure
+## 🌍 Language Switching (English / Macedonian)
+
+The site uses **react-i18next**. All copy lives in two JSON files:
+
+```
+src/i18n/
+├── index.js              ← i18next config (auto-detects browser language, persists choice)
+└── locales/
+    ├── en.json            ← English translations
+    └── mk.json            ← Macedonian translations
+```
+
+### How it works
+- A language toggle button (**EN / МК**) sits in the navbar
+- First visit: detects the browser's language — Macedonian browsers get `mk`, everyone else gets `en`
+- After that, the choice is saved in `localStorage` so it persists across visits
+- Switching language re-renders instantly — no page reload, no extra network request
+
+### Editing translations
+Just open `en.json` or `mk.json` and edit the text. The JSON structure mirrors
+the page sections (`hero`, `services`, `pricing`, `contact`, etc.) so finding
+the right string is straightforward. Both files must keep the **same keys** —
+only the values should differ between languages.
+
+Example — changing the hero subtitle:
+```json
+// en.json
+"hero": {
+  "sub": "From websites that convert to campaigns that scale..."
+}
+
+// mk.json
+"hero": {
+  "sub": "Од веб-страници што продаваат до кампањи што растат..."
+}
+```
+
+### Adding a third language
+1. Create `src/i18n/locales/de.json` (or whichever language), copying `en.json`'s structure
+2. Import it in `src/i18n/index.js` and add it to the `resources` object
+3. Add a button/option in `Navbar.jsx`'s language switcher
+
+---
+
+
 
 ```
 src/
@@ -119,9 +163,11 @@ netlify.toml                                 ← build + redirect config
 
 ## 📦 Dependencies
 
-| Package           | Purpose                  |
-|--------------------|---------------------------|
-| react + react-dom  | UI framework               |
-| vite               | Build tool + dev server    |
+| Package           | Purpose                          |
+|--------------------|-----------------------------------|
+| react + react-dom  | UI framework                      |
+| vite               | Build tool + dev server           |
+| i18next            | Translation engine                |
+| react-i18next      | React bindings for i18next        |
 
-That's it — no form SDK required anymore.
+No form SDK required — contact form uses Netlify Forms natively.

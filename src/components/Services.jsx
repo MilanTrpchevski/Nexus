@@ -1,32 +1,8 @@
+import { useTranslation } from 'react-i18next'
 import useReveal from '../hooks/useReveal'
 import styles from './Services.module.css'
 
-const SERVICES = [
-  {
-    num: '01',
-    icon: '◻',
-    name: 'Web Design & Dev',
-    desc: 'Fast, mobile-first websites that look great and convert visitors into customers. We build on modern stacks with SEO baked in.',
-  },
-  {
-    num: '02',
-    icon: '◎',
-    name: 'SEO & Content',
-    desc: 'Rank higher on Google for searches your customers are making. Local SEO strategies tailored for the Macedonian market.',
-  },
-  {
-    num: '03',
-    icon: '△',
-    name: 'Social Media',
-    desc: 'Strategic content and management for Instagram, Facebook, and TikTok. We build audiences that become loyal customers.',
-  },
-  {
-    num: '04',
-    icon: '◈',
-    name: 'Paid Advertising',
-    desc: 'Google Ads and Meta Ads campaigns that deliver measurable ROI. We manage budget, targeting, and creative — you get results.',
-  },
-]
+const ICONS = ['◻', '◎', '△', '◈']
 
 function ServiceCard({ num, icon, name, desc }) {
   const ref = useReveal()
@@ -41,26 +17,31 @@ function ServiceCard({ num, icon, name, desc }) {
 }
 
 export default function Services() {
+  const { t } = useTranslation()
+  const items = t('services.items', { returnObjects: true })
+
   return (
     <section id="services" className={styles.section}>
       <div className={styles.header}>
         <div className={styles.headerLabel}>
-          <p className={styles.eyebrow}>What We Do</p>
+          <p className={styles.eyebrow}>{t('services.eyebrow')}</p>
           <h2 className={styles.title}>
-            Our<br /><em>Services</em>
+            {t('services.titleLine1')}<br /><em>{t('services.titleEm')}</em>
           </h2>
         </div>
         <div className={styles.headerDesc}>
-          <p>
-            Every business deserves a strong digital presence. We deliver
-            end-to-end solutions — from your first website to full-scale
-            digital marketing campaigns.
-          </p>
+          <p>{t('services.desc')}</p>
         </div>
       </div>
       <div className={styles.grid}>
-        {SERVICES.map((s) => (
-          <ServiceCard key={s.num} {...s} />
+        {items.map((item, i) => (
+          <ServiceCard
+            key={item.name}
+            num={String(i + 1).padStart(2, '0')}
+            icon={ICONS[i]}
+            name={item.name}
+            desc={item.desc}
+          />
         ))}
       </div>
     </section>

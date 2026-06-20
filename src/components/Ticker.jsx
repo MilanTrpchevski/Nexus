@@ -1,10 +1,10 @@
-const ITEMS = [
-  'Web Design', 'SEO Optimization', 'Social Media Marketing',
-  'Google Ads', 'Brand Identity', 'E-Commerce', 'Content Strategy',
-]
+import { useTranslation } from 'react-i18next'
 
 export default function Ticker() {
-  const doubled = [...ITEMS, ...ITEMS]
+  const { t } = useTranslation()
+  const items = t('ticker.items', { returnObjects: true })
+  const doubled = [...items, ...items]
+
   return (
     <div className="ticker">
       <div className="ticker-inner">

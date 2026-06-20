@@ -62,7 +62,45 @@
   background: var(--accent);
 }
 
+.navRight {
+  display: flex;
+  align-items: center;
+  gap: 1.5rem;
+}
+
+.langSwitch {
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+  background: none;
+  border: 1px solid var(--line);
+  padding: 0.4rem 0.8rem;
+  font-family: 'DM Sans', sans-serif;
+  font-size: 0.72rem;
+  letter-spacing: 0.08em;
+  cursor: pointer;
+  color: var(--ink);
+  opacity: 0.55;
+  transition: opacity 0.2s, border-color 0.2s;
+}
+
+.langSwitch:hover {
+  opacity: 1;
+  border-color: var(--ink);
+}
+
+.langActive {
+  color: var(--accent);
+  font-weight: 600;
+  opacity: 1 !important;
+}
+
+.langDivider {
+  opacity: 0.3;
+}
+
 @media (max-width: 900px) {
   .nav { padding: 1rem 1.5rem; }
   .links { display: none; }
+  .navRight { gap: 0.8rem; }
 }

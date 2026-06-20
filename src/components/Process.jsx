@@ -1,28 +1,6 @@
+import { useTranslation } from 'react-i18next'
 import useReveal from '../hooks/useReveal'
 import styles from './Process.module.css'
-
-const STEPS = [
-  {
-    n: '01',
-    title: 'Discovery Call',
-    text: 'We learn about your business, goals, and target customers. Free consultation — no pressure, no jargon.',
-  },
-  {
-    n: '02',
-    title: 'Strategy & Proposal',
-    text: 'We send you a clear plan with timeline, deliverables, and pricing. No hidden costs, ever.',
-  },
-  {
-    n: '03',
-    title: 'Design & Build',
-    text: 'Our team gets to work. You receive regular updates and have input throughout the process.',
-  },
-  {
-    n: '04',
-    title: 'Launch & Grow',
-    text: 'We go live and monitor performance. Then we help you scale with ongoing marketing support.',
-  },
-]
 
 function Step({ n, title, text }) {
   const ref = useReveal()
@@ -38,22 +16,23 @@ function Step({ n, title, text }) {
 }
 
 export default function Process() {
+  const { t } = useTranslation()
+  const steps = t('process.steps', { returnObjects: true })
+
   return (
     <section id="process" className={styles.section}>
       <div className={styles.left}>
         <div>
-          <p className={styles.eyebrow}>How It Works</p>
+          <p className={styles.eyebrow}>{t('process.eyebrow')}</p>
           <h2 className={styles.title}>
-            Our<br /><em>Process</em>
+            {t('process.titleLine1')}<br /><em>{t('process.titleEm')}</em>
           </h2>
         </div>
-        <p className={styles.desc}>
-          Simple, transparent, and collaborative. We keep you in the loop at every step.
-        </p>
+        <p className={styles.desc}>{t('process.desc')}</p>
       </div>
       <div className={styles.right}>
-        {STEPS.map((s) => (
-          <Step key={s.n} {...s} />
+        {steps.map((s, i) => (
+          <Step key={s.title} n={String(i + 1).padStart(2, '0')} title={s.title} text={s.text} />
         ))}
       </div>
     </section>
