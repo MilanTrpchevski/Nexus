@@ -1,6 +1,3 @@
-# toml
-# File: netlify.toml
-# Sets build & publish, adds headers for JS MIME type and SPA redirect.
 [build]
   command = "npm run build"
   publish = "dist"
@@ -22,6 +19,11 @@
     Content-Type = "text/javascript; charset=utf-8"
 
 [[headers]]
+  for = "/*.css"
+  [headers.values]
+    Content-Type = "text/css; charset=utf-8"
+
+[[headers]]
   for = "/*"
   [headers.values]
     X-Content-Type-Options = "nosniff"
@@ -30,19 +32,3 @@
   from = "/*"
   to = "/index.html"
   status = 200
-
-# File: _headers (alternative to the headers above; place in repo root or in dist)
-# /*
-#   X-Content-Type-Options: nosniff
-#
-# /*.js
-#   Content-Type: text/javascript; charset=utf-8
-#
-# /*.mjs
-#   Content-Type: text/javascript; charset=utf-8
-#
-# /*.jsx
-#   Content-Type: text/javascript; charset=utf-8
-
-# File: _redirects (place in repo root or in dist for SPA routing)
-# /*    /index.html   200
