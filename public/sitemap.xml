@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
+        xmlns:xhtml="http://www.w3.org/1999/xhtml">
+
+  <url>
+    <loc>https://nexiuse.com/en</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://nexiuse.com/en" />
+    <xhtml:link rel="alternate" hreflang="mk" href="https://nexiuse.com/mk" />
+    <changefreq>monthly</changefreq>
+    <priority>1.0</priority>
+  </url>
+
+  <url>
+    <loc>https://nexiuse.com/mk</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://nexiuse.com/en" />
+    <xhtml:link rel="alternate" hreflang="mk" href="https://nexiuse.com/mk" />
+    <changefreq>monthly</changefreq>
+    <priority>1.0</priority>
+  </url>
+
+  <url>
+    <loc>https://nexiuse.com/en/privacy</loc>
+    <changefreq>yearly</changefreq>
+    <priority>0.3</priority>
+  </url>
+
+  <url>
+    <loc>https://nexiuse.com/mk/privacy</loc>
+    <changefreq>yearly</changefreq>
+    <priority>0.3</priority>
+  </url>
+
+</urlset>

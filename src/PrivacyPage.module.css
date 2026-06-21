@@ -1,0 +1,49 @@
+.wrap {
+  max-width: 42rem;
+  margin: 0 auto;
+  padding: 10rem 1.5rem 6rem;
+}
+
+.title {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: clamp(2.5rem, 5vw, 3.5rem);
+  letter-spacing: 0.02em;
+  margin-bottom: 0.5rem;
+}
+
+.updated {
+  font-size: 0.8rem;
+  opacity: 0.5;
+  margin-bottom: 3rem;
+}
+
+.section {
+  margin-bottom: 2.5rem;
+}
+
+.section h2 {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: 1.4rem;
+  letter-spacing: 0.02em;
+  margin-bottom: 0.8rem;
+  color: var(--accent);
+}
+
+.section p {
+  font-size: 0.95rem;
+  line-height: 1.7;
+  font-weight: 300;
+  opacity: 0.75;
+}
+
+.back {
+  display: inline-block;
+  margin-top: 2rem;
+  font-size: 0.8rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--ink);
+  text-decoration: none;
+  border-bottom: 1px solid var(--ink);
+  padding-bottom: 0.2rem;
+}

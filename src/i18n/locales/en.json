@@ -1,25 +1,31 @@
 {
+  "seo": {
+    "title": "NEXIUSE — Web Design & Digital Marketing Agency",
+    "description": "NEXIUSE builds fast, modern websites and runs SEO, social media, and ad campaigns for local businesses. Get a free consultation today.",
+    "keywords": "web design, digital marketing, SEO, website development, social media management"
+  },
   "nav": {
     "services": "Services",
     "process": "Process",
     "pricing": "Pricing",
     "contact": "Contact",
-    "cta": "Start Project"
+    "cta": "Start Project",
+    "privacy": "Privacy Policy"
   },
   "hero": {
-    "eyebrow": "Digital Agency — Skopje, MK",
+    "eyebrow": "Digital Agency",
     "headingLine1": "We Build",
     "headingEm": "Brands",
     "headingLine3": "Online.",
-    "sub": "From websites that convert to campaigns that scale — we help Macedonian businesses claim their space on the internet.",
+    "sub": "From websites that convert to campaigns that scale we help businesses claim their space on the internet.",
     "ctaPrimary": "Get a Free Quote",
     "ctaGhost": "Our Services",
     "scroll": "Scroll",
     "stats": {
       "response": "Avg. Response Time",
-      "expertise": "Local Expertise",
+      "support": "Days free support",
       "leads": "More Leads via Web",
-      "based": "Based in Macedonia"
+      "draft": "First project draft"
     }
   },
   "ticker": {
@@ -45,7 +51,7 @@
       },
       {
         "name": "SEO & Content",
-        "desc": "Rank higher on Google for searches your customers are making. Local SEO strategies tailored for the Macedonian market."
+        "desc": "Rank higher on Google for searches your customers are making. Local SEO strategies tailored for the market."
       },
       {
         "name": "Social Media",
@@ -85,7 +91,7 @@
     "eyebrow": "Transparent Costs",
     "titleLine1": "Our",
     "titleEm": "Pricing",
-    "desc": "Straightforward packages designed for Macedonian businesses at every stage. Get in touch for a quote tailored to your business.",
+    "desc": "Straightforward packages designed for businesses at every stage. Get in touch for a quote tailored to your business.",
     "badge": "Popular",
     "cta": "Request a Quote",
     "plans": [
@@ -149,8 +155,8 @@
       "message": "Tell Us About Your Business *"
     },
     "placeholders": {
-      "name": "Aleksandar Petrovski",
-      "email": "alex@business.mk",
+      "name": "Alex Smith",
+      "email": "alex@business.com",
       "company": "Your Company",
       "message": "What do you sell, who are your customers, what's your goal..."
     },
@@ -164,6 +170,27 @@
     },
     "submit": "Send Message →",
     "sending": "Sending…"
+  },
+  "privacy": {
+    "title": "Privacy Policy",
+    "lastUpdated": "Last updated: 2026",
+    "backHome": "← Back to home",
+    "seoTitle": "Privacy Policy — NEXIUSE",
+    "seoDescription": "Read NEXIUSE's privacy policy covering cookies, data collection, and how we handle contact form submissions.",
+    "section1Title": "What We Collect",
+    "section1Body": "When you fill out our contact form, we collect your name, email address, business name, and the message you provide. We use this information solely to respond to your inquiry.",
+    "section2Title": "Cookies",
+    "section2Body": "We use a small amount of cookies to remember your language preference and cookie consent choice. If you accept additional cookies, we may use them to understand site traffic and improve our service. You can decline non-essential cookies at any time.",
+    "section3Title": "How We Use Your Data",
+    "section3Body": "We never sell or share your information with third parties for marketing purposes. Contact form submissions are stored securely via our hosting provider and used only to follow up with you about your project.",
+    "section4Title": "Contact Us",
+    "section4Body": "If you have any questions about this privacy policy or want your data removed, reach out to us through the contact form or email us directly."
+  },
+  "cookies": {
+    "text": "We use cookies to improve your experience on our site and analyze traffic.",
+    "learnMore": "Learn more",
+    "accept": "Accept",
+    "decline": "Decline"
   },
   "formErrors": {
     "required": "This field is required",

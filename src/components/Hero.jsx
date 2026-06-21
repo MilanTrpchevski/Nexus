@@ -5,10 +5,10 @@ export default function Hero() {
   const { t } = useTranslation()
 
   const stats = [
-    { num: '48h',  label: t('hero.stats.response') },
-    { num: '100%', label: t('hero.stats.expertise') },
+    { num: '24h',  label: t('hero.stats.response') },
+    { num: '30', label: t('hero.stats.support') },
     { num: '3×',   label: t('hero.stats.leads') },
-    { num: 'MK',   label: t('hero.stats.based') },
+    { num: '24h',   label: t('hero.stats.draft') },
   ]
 
   return (

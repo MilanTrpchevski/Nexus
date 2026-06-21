@@ -42,7 +42,7 @@ export default function Navbar() {
           <span className={styles.langDivider}>/</span>
           <span className={i18n.language === 'mk' ? styles.langActive : ''}>МК</span>
         </button>
-        <a href="#contact" className={styles.cta}>{t('nav.cta')}</a>
+        <a href="#pricing" className={styles.cta}>{t('nav.cta')}</a>
       </div>
     </nav>
   )

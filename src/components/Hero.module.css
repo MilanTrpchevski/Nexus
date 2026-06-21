@@ -186,3 +186,12 @@
   .right { display: none; }
   .left { padding: 8rem 1.5rem 3rem; }
 }
+
+@media (max-width: 768px) {
+  .heading {
+    font-size: 3.3rem;
+  }
+  .actions {
+    width: 90%;
+  }
+}

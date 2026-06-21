@@ -15,6 +15,7 @@ const INFO = (() => {
 const INITIAL = {
   user_name:  '',
   user_email: '',
+  user_phone: '',
   company:    '',
   service:    '',
   message:    '',
@@ -188,21 +189,33 @@ export default function Contact() {
                 />
               </div>
               <div className={styles.formGroup}>
-                <label htmlFor="service">{t('contact.labels.service')}</label>
-                <select
-                  id="service"
-                  name="service"
-                  value={fields.service}
+                <label htmlFor="user_phone">{t('contact.labels.phone')}</label>
+                <input
+                  id="user_phone"
+                  name="user_phone"
+                  type="tel"
+                  placeholder={t('contact.placeholders.phone')}
+                  value={fields.user_phone}
                   onChange={handleChange}
-                >
-                  <option value="">{t('contact.serviceOptions.select')}</option>
-                  <option value="Website Design">{t('contact.serviceOptions.web')}</option>
-                  <option value="SEO & Content">{t('contact.serviceOptions.seo')}</option>
-                  <option value="Social Media">{t('contact.serviceOptions.social')}</option>
-                  <option value="Paid Advertising">{t('contact.serviceOptions.ads')}</option>
-                  <option value="Full Package">{t('contact.serviceOptions.full')}</option>
-                </select>
+                />
               </div>
+            </div>
+
+            <div className={styles.formGroup}>
+              <label htmlFor="service">{t('contact.labels.service')}</label>
+              <select
+                id="service"
+                name="service"
+                value={fields.service}
+                onChange={handleChange}
+              >
+                <option value="">{t('contact.serviceOptions.select')}</option>
+                <option value="Website Design">{t('contact.serviceOptions.web')}</option>
+                <option value="SEO & Content">{t('contact.serviceOptions.seo')}</option>
+                <option value="Social Media">{t('contact.serviceOptions.social')}</option>
+                <option value="Paid Advertising">{t('contact.serviceOptions.ads')}</option>
+                <option value="Full Package">{t('contact.serviceOptions.full')}</option>
+              </select>
             </div>
 
             <div className={styles.formGroup}>
